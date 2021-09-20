@@ -1,0 +1,60 @@
+[
+    {
+    "firstName": "naruto",
+    "lastName": "uzumaki",
+    "gender": "male",
+    "age": 28,
+    "address": {
+        "streetAddress": "101",
+        "city": "San Diego",
+        "state": "CA"
+    },
+    "phoneNumbers": [
+        { "type": "home", "number": "7349282382" }
+    ]
+ },
+
+ {
+    "firstName": "eren",
+    "lastName": "yeager",
+    "gender": "male",
+    "age": 28,
+    "address": {
+        "streetAddress": "101",
+        "city": "San Diego",
+        "state": "CA"
+    },
+    "phoneNumbers": [
+        { "type": "home", "number": "7349282382" }
+    ]
+ },
+ {
+    "firstName": "levi",
+    "lastName": "ackerman",
+    "gender": "male",
+    "age": 28,
+    "address": {
+        "streetAddress": "101",
+        "city": "San Diego",
+        "state": "CA"
+    },
+    "phoneNumbers": [
+        { "type": "home", "number": "7349282382" }
+    ]
+ },
+ {
+    "firstName": "sasuke",
+    "lastName": "uchiha",
+    "gender": "male",
+    "age": 28,
+    "address": {
+        "streetAddress": "101",
+        "city": "San Diego",
+        "state": "CA"
+    },
+    "phoneNumbers": [
+        { "type": "home", "number": "7349282382" }
+    ]
+ }
+
+]

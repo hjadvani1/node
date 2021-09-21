@@ -1,0 +1,22 @@
+{
+  "name": "weather_app",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "formidable": "^1.2.2",
+    "mongodb": "^4.1.2",
+    "mysql": "^2.18.1",
+    "nodemailer": "^6.6.3",
+    "pug": "^3.0.2",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {},
+  "keywords": [],
+  "description": ""
+}

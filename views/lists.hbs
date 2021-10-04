@@ -1,0 +1,26 @@
+<center>
+
+<h3><a href="/quotes">Create New</a></h3>
+<table style="background-color: aquamarine;">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Quote</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each list}}
+        
+        <tr>
+            <td>{{list.name}}</td>
+            <td>{{list.quote}}</td>
+            <td>
+                <a href="#">edit</a>
+                <a href="#">delete</a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+
+</table>
+</center>

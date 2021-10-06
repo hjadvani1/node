@@ -1,0 +1,10 @@
+{
+        "title":"Bing's Coffee House",
+        "description" :"Welcome To My House Of Coffee! We Hope You Enjoy Our Broad Selection Of Premium Coffee From All Over The World.",
+        "hours": [
+                {"day": "Mon - Fri", "time": "6am to 10pm"},
+                {"day": "Saturday", "time": "7am to 11pm"},
+                {"day": "Sunday", "time": "7am to 10pm"}
+              ]
+            
+}

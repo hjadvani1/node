@@ -1,0 +1,36 @@
+<h3><a href="/email">click here </a> to know or update about your resevarion</h3>
+
+<h3>Here Is The All Current Reservation</h3>
+
+
+
+
+
+    <body>
+    <table>
+    <th>
+    <tr>
+        <td>name</td>
+        <td>email</td>
+        <td>phone</td>
+        <td>date</td>
+        <td>time</td>
+        <td>person</td>
+    </tr>
+    </th>
+    <tbody>
+    {{#reservation}}
+    <tr>
+    <td>{{name}}</td>
+    <td>{{email}}</td>
+    <td>{{phone}}</td>
+    <td>{{date}}</td>
+    <td>{{time}}</td>
+    <td>{{person}}</td>
+    </tr>
+    {{/reservation}}
+    </tbody>
+    
+    
+    </body>
+    

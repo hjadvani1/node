@@ -26,7 +26,7 @@ const propsSchema = new mongoose.Schema({
   text: { type: String, default: '', isHtml: true },
   author: { type: Object, default: {}, immutable: true },
   slug: { type: String, default: '', immutable: true },
-  type: { type: String, default: '', immutable: true }, // original or link
+  type: { type: String, default: '', immutable: true }, 
   numReplies: { type: Number, default: 0, immutable: true },
   isPublic: { type: String, default: 'no', immutable: true },
   schema: { type: String, default: 'post', immutable: true },
@@ -51,8 +51,23 @@ const itemSchema = new mongoose.Schema({
 
 })
 
+const orderSchema = new mongoose.Schema({
+  name:{
+    type:String,
+    default:''
+  },
+  email:{type:String, default:''},
+  phone:{type:Number,default:''},
+  date:{type:String,default:""},
+  time:{type:String,default:''},
+  person:{type:String,default:""}
+})
+
 const Props = mongoose.model('props',propsSchema)
 
 const Item = mongoose.model('items',itemSchema)
 
-module.exports= {Props,Item}
+const Order = mongoose.model('orders',orderSchema)
+// module.exports= { Props,Item,Order}
+
+module.exports =Order

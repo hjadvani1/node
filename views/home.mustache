@@ -402,25 +402,25 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="">Email</label>
-                    <input type="text" class="form-control" name="email" placeholder="Your Email">
+                    <input type="text" class="form-control" name="email" id="email" placeholder="Your Email" onkeyup="validation()" required="">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="">Phone</label>
-                    <input type="text" class="form-control" name="phone" placeholder="Phone">
+                    <input type="text" class="form-control" name="phone" placeholder="Phone" required="">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="">Date</label>
-                    <input type="text" class="form-control" name="date" id="book_date" placeholder="Date">
+                    <input type="text" class="form-control" name="date" id="book_date" placeholder="Date" required="">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="">Time</label>
-                    <input type="text" class="form-control" id="book_time" name="time" placeholder="Time">
+                    <input type="text" class="form-control" id="book_time" name="time" placeholder="Time" required="">
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -428,12 +428,13 @@
                     <label for="">Person</label>
                     <div class="select-wrap one-third">
                       <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                      <select  id="" class="form-control"  name="person">
+                      <select  id="" class="form-control"  name="person" required="">
                         <option value="">Person</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
-                        <option value="4">4+</option>
+                        <option value="4">4</option>
+                        <option value="5">5+</option>
                       </select>
                     </div>
                   </div>
@@ -460,4 +461,18 @@
  
 
   </body>
+  {{! <script type="text/javascript">
+	function validation(){
+	var email=document.getElementById("email").value;
+	var emailpattern=/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+	if(emailpattern.test(email))
+	{
+		document.getElementById("email").style.backgroundColor='yellow';
+    }
+    else
+    {
+    	document.getElementById("email").style.backgroundColor='red'; }
+	} }}
+
+{{! </script> }}
 </html> 

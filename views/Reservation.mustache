@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+        {{>head}}
+            <style>
+            #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            }
+
+            #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+            }
+
+            #customers tr:nth-child(even){background-color: #FCEEDD;}
+
+            #customers tr:hover {background-color: #ddd;}
+
+            #customers th {
+            padding-top: 12px;        
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #333745;
+            color: white;
+            }
+            </style>
+
+    </head>
+  <body>
+    
+	  {{>nav}}
+
+        <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_4.jpg');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            {{! <h1 class="mb-2 bread">Specialties</h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Menu <i class="ion-ios-arrow-forward"></i></span></p> }}
+          </div>
+        </div>
+      </div>
+    </section>
+        
+            <h3><a href="/email">click here </a> to update or delete your reservation</h3>
+           <center> <h3>All Current Reservation</h3></center>
+
+
+    
+    <table id="customers">
+    
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Person</th>
+    </tr>
+    
+    
+    {{#reservation}}
+    <tr>
+    <td>{{name}}</td>
+    <td>{{email}}</td>
+    <td>{{phone}}</td>
+    <td>{{date}}</td>
+    <td>{{time}}</td>
+    <td>{{person}}</td>
+    </tr>
+    {{/reservation}}
+     
+    </body>	
+
+
+    {{! {{>footer}} 
+
+{{>scripts}}
+ 
+
+  </body>
+</html> 

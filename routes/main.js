@@ -1,15 +1,16 @@
 const express = require("express");
 var nodemailer = require("nodemailer");
 // const { createIndexes } = require('../models/props')
-const Props = require("../models/props");
-const Items = require("../models/props");
-const Order = require("../models/props");
+// const Props = require("../models/props");
+// const Items = require("../models/props");
+// const Order = require("../models/props");
+const { Category, Order, Items }= require('../models/props')
 const alert= require('alert-node')
 const router = express.Router();
 
 router.get("/", (req, res, next) => {
-  // const data = req.context
-  res.render("home", req.context);
+    const data = req.context
+    res.render("home", data);
 });
 
 router.get("/blog", (req, res) => {
@@ -31,50 +32,44 @@ router.post("/reservation", (req, res) => {
     }
   });
   // console.log(req.body.email);
-  try {
-    nodemailer.createTestAccount((err, account) => {
-      if (err) {
-        console.error("faile to create testing account ", +err.message);
-        return process.exit(1);
-      }
-    });
+  // try {
+    
+  //   const transporter = nodemailer.createTransport({
+  //     // host: 'smtp.ethereal.email',
 
-    const transporter = nodemailer.createTransport({
-      // host: 'smtp.ethereal.email',
+  //     // port: 587,
+  //     service: "gmail",
+  //     auth: {
+  //       user: "",
+  //       pass: "",
+  //     },
+  //   });
 
-      // port: 587,
-      service: "gmail",
-      auth: {
-        user: "",
-        pass: "",
-      },
-    });
+  //   const mailoptions = {
+  //     from: "",
+  //     to: req.body.email,
+  //     subject: "Reservation",
+  //     html: "<p>your reservation is confirm.Thank you for the Reservation .Have a great day</p>",
+  //   };
 
-    const mailoptions = {
-      from: "",
-      to: req.body.email,
-      subject: "Reservation",
-      html: "<p>your reservation is confirm.Thank you for the Reservation .Have a great day</p>",
-    };
-
-    transporter.sendMail(mailoptions, (err, info) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log("email sent successfully to ", req.body.email);
-      }
-    });
-  } catch (err) {
-    throw err;
-  }
+  //   transporter.sendMail(mailoptions, (err, info) => {
+  //     if (err) {
+  //       console.log(err);
+  //     } else {
+  //       console.log("email sent successfully to ", req.body.email);
+  //     }
+  //   });
+  // } catch (err) {
+  //   throw err;
+  // }
 });
 
 router.get("/reservation", (req, res) => {
 //   console.log("enter");
-  try {
+
     Order.find((err, docs) => {
       if (!err) {
-        // console.log(docs)
+        console.log(docs)
         // docs=docs.map((element,index)=>{
         //     element=`${element.name}</br>`;
         //     console.log(element)
@@ -89,9 +84,7 @@ router.get("/reservation", (req, res) => {
         console.log(err);
       }
     });
-  } catch (err) {
-    throw err;
-  }
+  
   // res.json('hey there')
 });
 
@@ -152,50 +145,88 @@ router.post("/update", (req, res) => {
       }
     });
   }
-  try {
-    const transporter = nodemailer.createTransport({
-      // host: 'smtp.ethereal.email',
-      // port: 587,
-      service: "gmail",
-      auth: {
-        user: "",
-        pass: "",
-      },
-    });
+  // try {
+  //   const transporter = nodemailer.createTransport({
+  //     // host: 'smtp.ethereal.email',
+  //     // port: 587,
+  //     service: "gmail",
+  //     auth: {
+  //       user: "",
+  //       pass: "",
+  //     },
+  //   });
 
-    const mailoptions = {
-      from: "",
-      to: req.body.email,
-      subject: "Reservation",
-      html: "<p>your  new reservation is confirm Thank you for the Reservation </p>",
-    };
+  //   const mailoptions = {
+  //     from: "",
+  //     to: req.body.email,
+  //     subject: "Reservation",
+  //     html: "<p>your  new reservation is confirm Thank you for the Reservation </p>",
+  //   };
 
-    transporter.sendMail(mailoptions, (err, info) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log("email sent successfully to the", req.body.email);
-      }
-    });
-  } catch (err) {
-    throw err;
-  }
+  //   transporter.sendMail(mailoptions, (err, info) => {
+  //     if (err) {
+  //       console.log(err);
+  //     } else {
+  //       console.log("email sent successfully to the", req.body.email);
+  //     }
+  //   });
+  // } catch (err) {
+  //   throw err;
+  // }
   // res.json('hey there')
 });
 
+
+router.get('/getcategory',(req,res)=>
+{
+   res.render('category')
+})
+
+router.post('/newcategory',(req,res)=>
+{
+
+  Category.create(req.body,(err)=>
+  {
+    console.log(req.body);
+    if(!err)
+    {
+      alert('New Category Added')
+      res.redirect('menu')
+    }
+  })
+
+})
+
 router.get("/getmenu", (req, res) => {
-  res.render("newmenu");
+  // res.render("newmenu");
+  Category.find((err,docs)=>{
+
+
+    if(!err)
+    {
+      res.render('newmenu',{
+        categoris:docs
+      })
+    }
+
+  })
 });
 
 router.post("/menu1", (req, res) => {
   console.log(req.body);
+
+
+  // const details = {
+  //   Iname =
+  // }
   Items.create(req.body, (err) => {
+
+
     if (!err) {
     //   res.redirect("menu1");
     //   res.json(req.body)
-        
         alert('New Item Added')
-        // res.redirect('menu')
+        res.redirect('menu')
     } else {
       res.send(err.message);
       console.log(err);
@@ -204,26 +235,29 @@ router.post("/menu1", (req, res) => {
 });
 
 
+
+
 router.get("/menu", (req, res) => {
     // const data = req.context
-    Items.find((err,docs)=>
-        {
 
-            if(!err)
-            {
-                res.render('menu',{
-                    Items:docs
-                })
-            }
-            else{
-                res.send(err)
-            }
 
-        })
+   Items.find((err,docs)=>
+   {
+     if(!err)
+     {
+       res.render('menu',{
+         items:docs
+       })
+     }
+   })
+    // Items.find().populate('Category')
     // res.render("menu", req.context); 
    })
 
 // router.get()
+
+
+
 
 
 

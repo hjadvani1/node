@@ -19,6 +19,7 @@
     "mustache": "^4.2.0",
     "mustache-express": "^1.3.2",
     "nodemailer": "^6.7.0",
+    "request-context": "^2.0.0",
     "turbo360": "^1.8.69",
     "vertex360": "^0.30.40"
   },

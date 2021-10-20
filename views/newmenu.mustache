@@ -70,19 +70,16 @@ input[type=submit]:hover {
                     <input type="text" class="form-control" name="Iname" placeholder="Item Name" required=""><br>
                   </div>
 
+
                     <label for="">Category</label>
                       <select  id="" class="form-control"  name="category" >
                         <option value="">Select Category</option>
-                        <option value="Coffee">Coffee</option>
-                        <option value="Tea">Tea</option>
-                        <option value="Mojito">Mojito</option>
-                        <option value="Desserts">Desserts</option>
-                        <option value="Wine">Wine</option>
-                        <option value="Drinks">Drinks</option>
+                    {{#categoris}}
+                        <option value="{{_id}}">{{category}}</option>
+                    {{/categoris}}
                       </select><br>
-
+                    
                     <label for="">Add Image</label>
-        
                     <div class="file">
                     <input type="file" name="image" id="fileToUpload"><br>
                     </div>
@@ -99,7 +96,7 @@ input[type=submit]:hover {
                     <div class="buttonstyle">
                     <input type="submit" value="Submit" class="btn btn-primary py-3 px-5">
                 
-                    <input type="submit" name="cancel" value="Cancel Reservation" class="btn btn-primary py-3 px-5">
+                    {{! <input type="submit" name="cancel" value="Cancel Reservation" class="btn btn-primary py-3 px-5"> }}
                     </div>
                     {{! <a href='`/delete/${}`'>Cancel Reservation </a> }}
             

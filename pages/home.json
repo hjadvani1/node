@@ -1,0 +1,20 @@
+{
+    "hero":
+    {
+        "header":"Drink Healthy <br> and Natural Coffee",
+        "subtext":"At Bing's House Of Coffee , We Only Brew The Freshest Coffee All Around The World . We Also Serve Pastries Such As Cupcake And Brownies.",
+        "bg_image":"images/barista.jpg"
+    },
+
+  "about": {
+    "header": "Welcome to Bing's Coffee House.",
+    "subtext": "Welcome to our house of coffee! We hope you enjoy our broad selection of premium coffee from all over the world.",
+    "bg_image": "/images/barista-2.jpg",
+    "images": [
+      {"image": "/images/coffee.jpg", "caption": "Coffee"},
+      {"image": "/images/tea.jpg", "caption": "Tea"},
+      {"image": "/images/cupcake.jpg", "caption": "Pastries"}
+    ]
+  }
+
+}

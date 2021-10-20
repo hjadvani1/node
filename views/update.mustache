@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+   
+<style>
+body{
+  
+  
+	align-items: center;
+  }
+input[type=text], select {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+input[type=submit]{
+  width: 13%;
+  background-color: #333745;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #2C3D63;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #D5CCCC;
+  padding: 20px;
+  
+}
+</style>
+</head>
+<body>
+
+<div>
+ <form action="/update" method="POST">
+           <center> <h3>Modify Your Reservation</h3>
+            {{#reservation}}
+                    <label for="">Name</label>
+                    <input type="text" class="form-control" name="name" placeholder="Your Name" value={{name}}><br>
+                  
+                    <label for="">Email</label>
+                    <input type="text" class="form-control" name="email" placeholder="Your Email" value={{email}}><br>
+                  
+                    <label for="">Phone</label>
+                    <input type="text" class="form-control" name="phone" placeholder="Phone" value={{phone}}><br>
+                  
+                    <label for="">Date</label>
+                    <input type="text" class="form-control" name="date" id="book_date" placeholder="Date" value={{date}}><br>
+                  
+                    <label for="">Time</label>
+                    <input type="text" class="form-control" id="book_time" name="time" placeholder="Time" value={{time}}><br>
+                 
+                    <label for="">Person</label>
+                      {{! <div class="icon"><span class="ion-ios-arrow-down"></span></div> }}
+                      <select  id="" class="form-control"  name="person" value={{person}}>
+                        <option value="">Person</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5+</option>
+                      </select><br>
+               
+                    <input type="submit" value="Submit" class="btn btn-primary py-3 px-5">
+                 
+                 
+                    <input type="submit" name="cancel" value="Cancel Reservation" class="btn btn-primary py-3 px-5">
+                    {{! <a href='`/delete/${}`'>Cancel Reservation </a> }}
+                {{/reservation}}
+                </center>
+  </div>
+ </form>
+ </body>
+ </html>

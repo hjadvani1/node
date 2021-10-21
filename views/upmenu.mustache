@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+{{>head}}
+   
+<style>
+body{
+  
+	align-items: center;
+  }
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  position:relative;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+input[type=submit]{
+  width: 45%;
+  background-color: #333745;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #2C3D63;
+}
+
+.menu{
+  width: 100%;
+  border-radius: 5px;
+  background-image: url('images/image_3.jpg');
+  object-fit: cover;
+  opacity:0.9;
+  padding: 20px;
+  color:white;
+  text-shadow: 1px 1px 0px #2C3D63;
+  display:flex;
+  justify-content:center;
+}
+.buttonstyle{
+    display:flex;
+    justify-content: space-between;
+}
+.file{
+  border-color: #04AA6D;
+}
+
+</style>
+</head>
+<body>
+ {{>nav}}
+
+    
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_4.jpg');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            {{! <h1 class="mb-2 bread">Specialties</h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Menu <i class="ion-ios-arrow-forward"></i></span></p> }}
+          </div>
+        </div>
+      </div>
+      </section>
+	
+
+<section class="ftco-section">
+    	<div class="container">
+
+       
+<div class="menu">
+ <form action="/menu1" method="POST">
+    <div class="">
+            <h3>Add Menu</h3>
+                {{#items}}
+                    <div>
+                   <label for="">Item Name</label>
+                    <input type="text" class="form-control" name="Iname" placeholder="Item Name" value="{{Iname}}"required=""><br>
+                  </div>
+
+
+                    <label for="">Category</label>
+                      <select  id="" class="form-control"  name="category" >
+                        <option value="">Select Category</option>
+                    
+                        <option value="{{category}}">{{category}}</option>
+                
+                      </select><br>
+                    
+                    <label for="">Add Image</label>
+                    <div class="file">
+                    <input type="file" name="image" value="images/{{image}}" ><br>
+                    </div>
+                    
+
+                    <br/>
+                    <label for="">Ingredients</label>
+                    <input type="text" name="ingredients" value="{{ingredients}}" placeholder="Describe Ingredients" required=""><br>
+
+                    <label for="">Price</label>
+                    <input type="text" name="price" placeholder="Enter Item Price" value="{{price}}" required=""><br>
+                    
+                {{/items}}                     
+                    <div class="buttonstyle">
+                    <input type="submit" value="Submit" class="btn btn-primary py-3 px-5">
+                
+                    {{! <input type="submit" name="cancel" value="Cancel Reservation" class="btn btn-primary py-3 px-5"> }}
+                    </div>
+                    {{! <a href='`/delete/${}`'>Cancel Reservation </a> }}
+            
+        </div>
+  </div>
+ </form>
+ </div>
+ </div>
+ </section>
+  {{>footer}}
+
+{{>scripts}}
+
+
+ </body>
+ </html>

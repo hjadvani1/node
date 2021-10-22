@@ -81,7 +81,7 @@ input[type=submit]:hover {
 <div class="menu">
  <form action="/menu1" method="POST">
     <div class="">
-            <h3>Add Menu</h3>
+            <center><h3 style="color:white">Update Item</h3></center>
                 {{#items}}
                     <div>
                    <label for="">Item Name</label>
@@ -92,9 +92,9 @@ input[type=submit]:hover {
                     <label for="">Category</label>
                       <select  id="" class="form-control"  name="category" >
                         <option value="">Select Category</option>
-                    
-                        <option value="{{category}}">{{category}}</option>
-                
+                    {{#categories}}
+                        <option value="{{category._id}}">{{Category}}</option>
+                    {{/categories}}  
                       </select><br>
                     
                     <label for="">Add Image</label>

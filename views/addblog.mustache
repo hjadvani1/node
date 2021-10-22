@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+{{>head}}
+   
+<style>
+body{
+  
+	align-items: center;
+  }
+input[type=text]{
+  width: 100%;
+  padding: 12px 20px;
+  position:relative;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+input[type=submit]:hover {
+  background-color: #2C3D63;
+}
+
+input[type=submit]{
+  width: 35%;
+  background-color: #333745;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.blogs
+{
+  width: 100%;
+  border-radius: 5px;
+  background-image: url('images/insta-1.jpg');
+  object-fit: cover;
+  opacity:0.8;
+  padding: 20px;
+  color:white;
+  text-shadow: 1px 1px 0px #2C3D63;
+  display:flex;
+  justify-content:center;
+}
+
+</style>
+</head>
+<body>
+ {{>nav}}
+
+    
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_4.jpg');" data-stellar-background-ratio="0.5">
+        
+        <div class="overlay"></div>
+    
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-center justify-content-center">
+                <div class="col-md-9 ftco-animate text-center">
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+	
+
+    <section class="ftco-section">
+      <div class="container">        
+       
+        <div class="blogs">
+            <form action="/blogs" method="POST">
+             
+                        <h3>Add Your Blog</h3>
+
+                        <label for="">Select Image</label>
+                        <div class="file">
+                            <input type="file" name="image" id="fileToUpload">
+                        </div><br>
+
+                        <div>
+                            Author Name
+                            <input type="text" class="form-control" name="author" placeholder="Enter Your Name" required="">
+                        </div>
+
+                        <div>
+                            Date
+                            <input  type="date" class="form-control" name="date" value="2021-10-22" min="2021-10-22" required="" readonly>
+                        </div>
+
+                        <div>
+                            Title
+                            <input type="text" class="form-control" name="title" placeholder="Title" required="">
+                        </div>
+                        
+                        <div>
+                        Write Something
+                        <input type="text" name="write" placeholder="Write Something" required=""><br>
+                        </div>
+
+                        <div class="buttonstyle">
+                        <input type="submit" value="Submit" >
+                        </div>    
+
+            </form>
+       </div>
+    </div>
+  </section>
+  {{>footer}}
+
+{{>scripts}}
+
+
+ </body>
+ </html>

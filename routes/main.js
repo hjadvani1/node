@@ -1,151 +1,109 @@
-const { resolveSoa } = require("dns");
+
 const express = require("express");
 var nodemailer = require("nodemailer");
-// const { createIndexes } = require('../models/props')
-// const Props = require("../models/props");
-// const Items = require("../models/props");
-// const Order = require("../models/props");
-const { Category, Order, Items }= require('../models/props')
+
+const { Category, Order, Items,Blog }= require('../models/props')
 const alert= require('alert-node')
 const router = express.Router();
 
-router.get("/", (req, res, next) => {
-    const data = req.context
-    res.render("home", data);
-});
-
-router.get("/blog", (req, res) => {
-  // const data = req.context
-  res.render("blog", req.context);
-});
 
 
-
-router.post("/reservation", (req, res) => {
-  // res.redirect('order')
-  // console.log(req.body);
-  Order.create(req.body, (err) => {
-    if (!err) {
-      res.redirect("reservation");
-    } else {
-      res.send(err.message);
-      console.log(err);
-    }
-  });
-  // console.log(req.body.email);
-  // try {
+router.get("/", async function(req, res){
     
-  //   const transporter = nodemailer.createTransport({
-  //     // host: 'smtp.ethereal.email',
-
-  //     // port: 587,
-  //     service: "gmail",
-  //     auth: {
-  //       user: "",
-  //       pass: "",
-  //     },
-  //   });
-
-  //   const mailoptions = {
-  //     from: "",
-  //     to: req.body.email,
-  //     subject: "Reservation",
-  //     html: "<p>your reservation is confirm.Thank you for the Reservation .Have a great day</p>",
-  //   };
-
-  //   transporter.sendMail(mailoptions, (err, info) => {
-  //     if (err) {
-  //       console.log(err);
-  //     } else {
-  //       console.log("email sent successfully to ", req.body.email);
-  //     }
-  //   });
-  // } catch (err) {
-  //   throw err;
-  // }
+    await res.render("home");
 });
 
-router.get("/reservation", (req, res) => {
-//   console.log("enter");
-
-    Order.find((err, docs) => {
-      if (!err) {
-        console.log(docs)
-        // docs=docs.map((element,index)=>{
-        //     element=`${element.name}</br>`;
-        //     console.log(element)
-        //     return element
-        // })
-        res.render("Reservation", {
-          reservation: docs,
-        });
-        // res.json(docs)
-      } else {
-        res.send(err);
-        console.log(err);
-      }
-    });
+router.post("/reservation", async function(req, res){
   
-  // res.json('hey there')
-});
+    try{
 
-router.get("/email", (req, res) => {
-  try {
-    res.render("email");
-  } catch (err) {
-    throw err;
-  }
-
-  // res.json('hey there')
-});
-
-router.post("/getdata", (req, res) => {
-  console.log("email", req.body);
-
-  Order.findOne({ email: req.body.email }, (err, docs) => {
-    if (!err) {
-      // console.log(docs)
-      // docs=docs.map((element,index)=>{
-      //     element=`${element.name}</br>`;
-      //     console.log(element)
-      //     return element
-      // })
-      // console.log("data",docs)
-      res.render("update", {
-        reservation: docs,
-      });
-      // res.json(docs)
-    } else {
-      res.send(err);
-      console.log(err);
+      const data = await Order.create(req.body)
+      console.log(data);
+      res.redirect('reservation')
     }
-  });
-
-  // res.json('hey there')
+    catch(err)
+    {
+      throw err
+    }
+      
 });
 
-router.post("/update", (req, res) => {
-  console.log("enter", req.body.cancel);
-  if (req.body.cancel === "Cancel Reservation") {
-    Order.deleteOne({ email: req.body.email }, (err, docs) => {
-      if (!err) {
-        console.log("data", docs);
-        res.redirect("reservation");
-      } else {
-        res.send(err);
-        console.log(err);
+
+router.get("/reservation", async function(req, res){
+    
+    try
+    {
+        const data = await Order.find()
+        res.render('Reservation',
+        {
+          reservation:data
+        })
+    }
+      catch(err)
+      {
+        throw err
       }
-    });
-  } else {
-    Order.updateOne({ email: req.body.email }, req.body, (err, docs) => {
-      if (!err) {
-        console.log("data", docs);
-        res.redirect("reservation");
-      } else {
-        console.log(err);
+});
+
+
+
+router.get("/email", async function(req, res){
+  
+        await res.render('email')
+
+});
+
+router.post("/getdata", async function(req, res){
+
+    if (req.body.cancel === "Cancel Reservation") 
+    {     
+      const data = await Order.deleteOne({email:req.body.email})
+      console.log(data);
+      res.redirect('reservation')
+    }
+  else
+  {
+    try
+      {
+
+        const data = await Order.findOne({email:req.body.email})
+        res.render('update',{
+            reservation:data,
+        })
       }
-    });
+      catch(err)
+      {
+        throw err
+      }
+  
   }
+      
+});
+
+router.post("/update", async function(req, res){
+
+
+    
+      const data = await Order.updateOne({email:req.body.email},req.body)
+      console.log(data);
+      res.redirect('reservation')
+    // }
+    // catch(err)
+    // {
+    //   throw err
+    // }
+}
+)
+  // 
+  //   Order.updateOne({ email: req.body.email }, req.body, (err, docs) => {
+  //     if (!err) {
+  //       console.log("data", docs);
+  //       res.redirect("reservation");
+  //     } else {
+  //       console.log(err);
+  //     }
+  //   
+  // }
   // try {
   //   const transporter = nodemailer.createTransport({
   //     // host: 'smtp.ethereal.email',
@@ -166,7 +124,7 @@ router.post("/update", (req, res) => {
 
   //   transporter.sendMail(mailoptions, (err, info) => {
   //     if (err) {
-  //       console.log(err);
+  //       console.log(err);const Category = mongoose.model("categories", categorySchema);
   //     } else {
   //       console.log("email sent successfully to the", req.body.email);
   //     }
@@ -174,43 +132,59 @@ router.post("/update", (req, res) => {
   // } catch (err) {
   //   throw err;
   // }
-  // res.json('hey there')
-});
+  // res.json('hey there')docs=docs.map((element,index)=>{
+    //     element=`${element.author}`;
+    //     console.log(element)
+    //     return element
+    // })
 
 
-router.get('/getcategory',(req,res)=>
+
+router.get('/getcategory',async function(req,res)
 {
-   res.render('category')
+   await res.render('category')
 })
 
-router.post('/newcategory',(req,res)=>
+router.post('/newcategory',async function(req,res)
 {
 
-  Category.create(req.body,(err)=>
+  try
   {
-    console.log(req.body);
-    if(!err)
-    {
-      alert('New Category Added')
-      res.redirect('menu')
-    }
-  })
+    const data = await Category.create(req.body)
+    alert('New Category Added')
+    res.redirect('menu')
+  }
+  catch(err)
+  {
+    throw err
+  }
+
 
 })
 
-router.get("/getmenu", (req, res) => {
+router.get("/getmenu", async function(req, res){
   // res.render("newmenu");
-  Category.find((err,docs)=>{
+  // Category.find((err,docs)=>{
 
 
-    if(!err)
-    {
-      res.render('newmenu',{
-        categoris:docs
-      })
-    }
+  //   if(!err)
+  //   {
+  //     res.render('newmenu',{
+  //       categoris:docs
+  //     })
+  //   }
 
-  })
+  // })
+  try{
+     const data = Category.find()
+     res.render('newmenu',{
+      categoris:data,
+     })
+  }
+  catch(err)
+  {
+    throw err
+  }
 });
 
 router.post("/menu1", (req, res) => {
@@ -332,12 +306,12 @@ router.get("/menu", async(req, res) => {
       {
         $group: {
           _id: "$categ",
-        items: {$push: {image: "$image", price: "$price",}}
+        items: {$push: {image: "$image", price: "$price", ingredients:"$ingredients",Iname:"$Iname"}}
         }
       }
     ])
 
-    // console.log(JSON.stringify(items1));
+    console.log(JSON.stringify(items1));
 
   //  Items.find((err,docs)=>
   //  {
@@ -370,6 +344,7 @@ router.post('/getmenudata',(req,res)=>
       Items.deleteOne({ Iname: req.body.Iname }, (err, docs) => {
         if (!err) {
           console.log("data", docs);
+          alert('Item Remove Successfully')
           res.redirect("menu");
         } else {
           res.send(err);
@@ -380,28 +355,46 @@ router.post('/getmenudata',(req,res)=>
   else
   {
     // console.log("albnkbakfbkaf");
-      Items.findOne({ Iname:req.body.Iname},null,{populate:{path:"category"}},(err,docs)=>
+      // Items.findOne({ Iname:req.body.Iname},null,{populate:{path:"category"}},(err,docs)=>
+      // {
+      //   console.log(docs);
+      //   if (!err)
+      //   {
+      //     // console.log(req.body);
+      //     res.render("upmenu", {
+      //       items: docs,
+      //     });
+          
+      //   } 
+      //   else
+      //   {
+      //     res.send(err);
+      //     console.log(err);
+      //   }
+
+      // })
+
+      Items.findOne({Iname:req.body.Iname}).exec((err,docs)=>
       {
-        console.log(docs);
-        if (!err)
+        if(!err)
         {
-          // console.log(req.body);
-          res.render("upmenu", {
-            items: docs,
-          });
-          // res.json(docs)
-          // console.log(Iname);
-          // console.log(docs);
-        } 
+          
+          // console.log(categories.category);
+          
+          
+          console.log(docs.category[0].category);
+          res.render('upmenu',
+          {
+            items:docs,
+          })
+        }
         else
         {
-          res.send(err);
-          console.log(err);
+          res.send(err)
         }
-
-      }).lean()
+      })
   }
-  
+      
 })
 
 
@@ -412,7 +405,33 @@ router.post('/menu1',(req,res)=>
 })
 
 
+router.get('/addblog',async function(req,res)
+{
+   await res.render('addblog')
+  
+}
 
+)
+
+router.get('/blog-single',async function(req,res)
+{
+  await res.render('blog-single')
+})
+
+router.post('/blogs',async function(req,res)
+{
+  
+  try{
+
+    const blogs = await Blog.create(req.body)
+    // console.log(blogs);
+    res.redirect('blog')
+  }
+  catch(err)
+  {
+    throw err
+  }
+})
 
 
 
